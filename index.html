@@ -132,13 +132,13 @@
 
   /* ====== HERO ====== */
   .hero{
-    padding:160px 0 80px;
+    padding:120px 0 80px;
     position:relative;
   }
   .hero-grid{
     display:flex;
     flex-direction:column;
-    gap:80px;
+    gap:64px;
     align-items:stretch;
   }
   .hero-left{ position:relative; }
@@ -230,7 +230,8 @@
 
   /* Hero cat illustration */
   .hero-cat{
-    margin-top:64px;
+    margin-top:0;
+    padding-top:90px;
     position:relative;
     display:flex;
     justify-content:center;
@@ -238,7 +239,7 @@
   }
   .hero-cat .mediacraft-mark{
     position:absolute;
-    top:-30px; left:50%;
+    top:0; left:50%;
     transform:translateX(-50%);
     font-family:'Gowun Batang', serif;
     font-weight:700;
@@ -1129,6 +1130,66 @@
   <span class="pawprint tiny rot-2" style="top:260px; right:12%;" aria-hidden="true"><svg><use href="#paw"/></svg></span>
   <div class="wrap">
     <div class="hero-grid">
+    <!-- HERO ILLUSTRATION : the big cat -->
+    <div class="hero-cat reveal" aria-label="MEDIACRAFT mark">
+      <div class="mediacraft-mark">MEDIACRAFT</div>
+      <svg class="cat-svg" viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- body outline (long sleeping cat) -->
+        <path class="draw" d="
+          M 90 230
+          Q 80 200, 110 175
+          Q 130 158, 158 162
+          L 160 142
+          Q 165 122, 180 140
+          L 188 162
+          Q 210 158, 235 162
+          L 245 142
+          Q 258 124, 268 144
+          L 272 165
+          Q 320 170, 410 168
+          Q 540 165, 660 172
+          Q 760 178, 820 195
+          Q 855 208, 855 222
+          Q 855 240, 815 246
+          Q 760 252, 660 250
+          Q 540 248, 410 250
+          Q 260 252, 150 250
+          Q 95 250, 90 230 Z" stroke-width="3.2"/>
+
+        <!-- face: eyes (closed lines), nose, whiskers -->
+        <path class="draw draw-2" d="M 150 205 Q 158 210, 168 205" stroke-width="2.4"/>
+        <path class="draw draw-2" d="M 188 205 Q 196 210, 206 205" stroke-width="2.4"/>
+        <path class="draw draw-2" d="M 175 220 Q 178 224, 182 220" stroke-width="2.2"/>
+        <path class="draw draw-2" d="M 178 222 Q 178 228, 175 230" stroke-width="2"/>
+        <path class="draw draw-2" d="M 120 215 L 145 218" stroke-width="1.6"/>
+        <path class="draw draw-2" d="M 120 222 L 145 222" stroke-width="1.6"/>
+        <path class="draw draw-2" d="M 208 215 L 232 212" stroke-width="1.6"/>
+        <path class="draw draw-2" d="M 208 222 L 232 224" stroke-width="1.6"/>
+
+        <!-- stripes (rough hatching) -->
+        <path class="draw draw-3" d="M 310 175 L 305 235" stroke-width="3"/>
+        <path class="draw draw-3" d="M 340 173 L 332 240" stroke-width="3.4"/>
+        <path class="draw draw-3" d="M 370 172 L 365 242" stroke-width="3"/>
+        <path class="draw draw-3" d="M 405 170 L 400 244" stroke-width="3.6"/>
+        <path class="draw draw-3" d="M 442 170 L 438 244" stroke-width="3"/>
+        <path class="draw draw-3" d="M 478 170 L 478 244" stroke-width="3.4"/>
+        <path class="draw draw-3" d="M 515 170 L 518 244" stroke-width="3"/>
+        <path class="draw draw-3" d="M 552 170 L 555 244" stroke-width="3.4"/>
+        <path class="draw draw-3" d="M 590 172 L 595 244" stroke-width="3"/>
+        <path class="draw draw-3" d="M 628 174 L 634 242" stroke-width="3.6"/>
+        <path class="draw draw-3" d="M 665 176 L 670 242" stroke-width="3"/>
+        <path class="draw draw-3" d="M 702 178 L 706 240" stroke-width="3.4"/>
+        <path class="draw draw-3" d="M 738 182 L 740 238" stroke-width="3"/>
+        <path class="draw draw-3" d="M 775 188 L 776 232" stroke-width="3"/>
+        <path class="draw draw-3" d="M 810 198 L 808 226" stroke-width="2.6"/>
+      </svg>
+
+      <div class="hero-annot a1">
+        <span class="arrow">↘</span>
+        멍 때리는 중이지만<br>기획은 돌아가고 있음
+      </div>
+    </div>
+
       <!-- Inline contact form on the top -->
       <form class="hero-form reveal" id="contact" onsubmit="event.preventDefault(); alert('기획 요청이 접수되었습니다. (데모 화면이므로 실제 전송되지 않습니다.)');">
         <div class="hero-form-eyebrow">Get a plan</div>
@@ -1189,66 +1250,6 @@
         <div class="hero-ctas reveal">
           <a href="#how" class="btn btn-ghost">어떻게 작동하나요?</a>
         </div>
-      </div>
-    </div>
-
-    <!-- HERO ILLUSTRATION : the big cat -->
-    <div class="hero-cat reveal" aria-label="MEDIACRAFT mark">
-      <div class="mediacraft-mark">MEDIACRAFT</div>
-      <svg class="cat-svg" viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <!-- body outline (long sleeping cat) -->
-        <path class="draw" d="
-          M 90 230
-          Q 80 200, 110 175
-          Q 130 158, 158 162
-          L 160 142
-          Q 165 122, 180 140
-          L 188 162
-          Q 210 158, 235 162
-          L 245 142
-          Q 258 124, 268 144
-          L 272 165
-          Q 320 170, 410 168
-          Q 540 165, 660 172
-          Q 760 178, 820 195
-          Q 855 208, 855 222
-          Q 855 240, 815 246
-          Q 760 252, 660 250
-          Q 540 248, 410 250
-          Q 260 252, 150 250
-          Q 95 250, 90 230 Z" stroke-width="3.2"/>
-
-        <!-- face: eyes (closed lines), nose, whiskers -->
-        <path class="draw draw-2" d="M 150 205 Q 158 210, 168 205" stroke-width="2.4"/>
-        <path class="draw draw-2" d="M 188 205 Q 196 210, 206 205" stroke-width="2.4"/>
-        <path class="draw draw-2" d="M 175 220 Q 178 224, 182 220" stroke-width="2.2"/>
-        <path class="draw draw-2" d="M 178 222 Q 178 228, 175 230" stroke-width="2"/>
-        <path class="draw draw-2" d="M 120 215 L 145 218" stroke-width="1.6"/>
-        <path class="draw draw-2" d="M 120 222 L 145 222" stroke-width="1.6"/>
-        <path class="draw draw-2" d="M 208 215 L 232 212" stroke-width="1.6"/>
-        <path class="draw draw-2" d="M 208 222 L 232 224" stroke-width="1.6"/>
-
-        <!-- stripes (rough hatching) -->
-        <path class="draw draw-3" d="M 310 175 L 305 235" stroke-width="3"/>
-        <path class="draw draw-3" d="M 340 173 L 332 240" stroke-width="3.4"/>
-        <path class="draw draw-3" d="M 370 172 L 365 242" stroke-width="3"/>
-        <path class="draw draw-3" d="M 405 170 L 400 244" stroke-width="3.6"/>
-        <path class="draw draw-3" d="M 442 170 L 438 244" stroke-width="3"/>
-        <path class="draw draw-3" d="M 478 170 L 478 244" stroke-width="3.4"/>
-        <path class="draw draw-3" d="M 515 170 L 518 244" stroke-width="3"/>
-        <path class="draw draw-3" d="M 552 170 L 555 244" stroke-width="3.4"/>
-        <path class="draw draw-3" d="M 590 172 L 595 244" stroke-width="3"/>
-        <path class="draw draw-3" d="M 628 174 L 634 242" stroke-width="3.6"/>
-        <path class="draw draw-3" d="M 665 176 L 670 242" stroke-width="3"/>
-        <path class="draw draw-3" d="M 702 178 L 706 240" stroke-width="3.4"/>
-        <path class="draw draw-3" d="M 738 182 L 740 238" stroke-width="3"/>
-        <path class="draw draw-3" d="M 775 188 L 776 232" stroke-width="3"/>
-        <path class="draw draw-3" d="M 810 198 L 808 226" stroke-width="2.6"/>
-      </svg>
-
-      <div class="hero-annot a1">
-        <span class="arrow">↘</span>
-        멍 때리는 중이지만<br>기획은 돌아가고 있음
       </div>
     </div>
   </div>
