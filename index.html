@@ -1282,23 +1282,23 @@
     </div>
 
       <!-- Inline contact form on the top -->
-      <form class="hero-form reveal" id="contact" onsubmit="event.preventDefault(); alert('기획 요청이 접수되었습니다. (데모 화면이므로 실제 전송되지 않습니다.)');">
+      <form class="hero-form reveal" id="contact">
         <div class="hero-form-eyebrow">Get a plan</div>
         <div class="hero-form-title">
           질문에 답하면,<br>기획안이 옵니다.
         </div>
         <div class="form-field">
           <label>이름 · 회사<span class="req">*</span></label>
-          <input type="text" placeholder="예: 김디렉터 / 옵스미디어" required />
+          <input type="text" name="name" placeholder="예: 김디렉터 / 옵스미디어" required />
         </div>
         <div class="form-row">
           <div class="form-field">
             <label>이메일<span class="req">*</span></label>
-            <input type="email" placeholder="hello@brand.co" required />
+            <input type="email" name="email" placeholder="hello@brand.co" required />
           </div>
           <div class="form-field">
             <label>예산 범위</label>
-            <select>
+            <select name="budget">
               <option>~ 1,000만원</option>
               <option>1,000 ~ 3,000만원</option>
               <option>3,000 ~ 5,000만원</option>
@@ -1309,22 +1309,23 @@
         </div>
         <div class="form-field">
           <label>관심 있는 영역 (복수 선택)</label>
-          <div class="chips">
-            <span class="chip">회사 소개 영상</span>
-            <span class="chip">브랜드 캠페인</span>
-            <span class="chip">정기 콘텐츠</span>
-            <span class="chip">자동 응답형 제안</span>
-            <span class="chip">기타</span>
+          <div class="chips" id="interestChips">
+            <span class="chip" data-value="회사 소개 영상">회사 소개 영상</span>
+            <span class="chip" data-value="브랜드 캠페인">브랜드 캠페인</span>
+            <span class="chip" data-value="정기 콘텐츠">정기 콘텐츠</span>
+            <span class="chip" data-value="자동 응답형 제안">자동 응답형 제안</span>
+            <span class="chip" data-value="기타">기타</span>
           </div>
+          <input type="hidden" name="interests" id="interestsHidden" />
         </div>
         <div class="form-field">
           <label>이 영상의 목적은 무엇인가요?<span class="req">*</span></label>
-          <textarea placeholder="누구에게, 무엇을, 왜 보여주고 싶은지 자유롭게 적어주세요." required></textarea>
+          <textarea name="purpose" placeholder="누구에게, 무엇을, 왜 보여주고 싶은지 자유롭게 적어주세요." required></textarea>
         </div>
-        <button type="submit" class="hero-form-submit">
-          기획 요청 보내기 →
+        <button type="submit" class="hero-form-submit" id="heroFormSubmit">
+          <span class="hero-form-submit-label">기획 요청 보내기 →</span>
         </button>
-        <p class="hero-form-note">접수 후 영업일 기준 1~3일 이내에 1차 기획안과 함께 회신드립니다.</p>
+        <p class="hero-form-note" id="heroFormNote">접수 후 영업일 기준 1~3일 이내에 1차 기획안과 함께 회신드립니다.</p>
       </form>
 
       <div class="hero-left">
@@ -1758,10 +1759,77 @@
   },{threshold:.12, rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-  // Chips
-  document.querySelectorAll('.chip').forEach(c=>{
-    c.addEventListener('click',()=>c.classList.toggle('on'));
+  // Chips — toggle + sync selected values into hidden input
+  const interestsHidden = document.getElementById('interestsHidden');
+  function syncInterests(){
+    if(!interestsHidden) return;
+    const selected = Array.from(document.querySelectorAll('#interestChips .chip.on'))
+      .map(c => c.dataset.value || c.textContent.trim());
+    interestsHidden.value = selected.join(', ');
+  }
+  document.querySelectorAll('#interestChips .chip').forEach(c=>{
+    c.addEventListener('click', ()=>{
+      c.classList.toggle('on');
+      syncInterests();
+    });
   });
+  // also keep generic .chip toggle for any chip not in the form (defensive)
+  document.querySelectorAll('.chip:not(#interestChips .chip)').forEach(c=>{
+    c.addEventListener('click', ()=>c.classList.toggle('on'));
+  });
+
+  // ===== Form submission — sends data to Google Apps Script =====
+  const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycby6V-OFOPeNwdE0zAITUPN4YHqOIchjK5DZ-Mu6U9MOLiNUGqZuEg6BgLe9VBS-viMg_Q/exec';
+  const heroForm = document.getElementById('contact');
+  const submitBtn = document.getElementById('heroFormSubmit');
+  const submitLabel = submitBtn ? submitBtn.querySelector('.hero-form-submit-label') : null;
+  const formNote = document.getElementById('heroFormNote');
+
+  if(heroForm){
+    heroForm.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      // make sure hidden interests is up to date
+      syncInterests();
+
+      // UI: lock + show sending state
+      submitBtn.disabled = true;
+      const originalLabel = submitLabel.textContent;
+      submitLabel.textContent = '전송 중…';
+      if(formNote){ formNote.textContent = '잠시만 기다려주세요.'; }
+
+      try{
+        const formData = new FormData(heroForm);
+        await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors'  // Apps Script does not return CORS headers; this fire-and-forget works
+        });
+        // We cannot read response with no-cors, so treat as success after the fetch resolves.
+        // Show success state.
+        submitLabel.textContent = '✓ 접수 완료';
+        if(formNote){
+          formNote.innerHTML = '문의가 접수되었습니다. 1~3 영업일 내에 1차 기획안과 함께 회신드립니다.';
+        }
+        heroForm.reset();
+        document.querySelectorAll('#interestChips .chip.on').forEach(c=>c.classList.remove('on'));
+        if(interestsHidden) interestsHidden.value = '';
+        // Lock the button so the user doesn't double-submit
+        setTimeout(()=>{
+          submitBtn.disabled = false;
+          submitLabel.textContent = originalLabel;
+          if(formNote){
+            formNote.textContent = '접수 후 영업일 기준 1~3일 이내에 1차 기획안과 함께 회신드립니다.';
+          }
+        }, 6000);
+      }catch(err){
+        submitBtn.disabled = false;
+        submitLabel.textContent = originalLabel;
+        if(formNote){
+          formNote.innerHTML = '전송에 실패했어요. 잠시 후 다시 시도하시거나 <a href="mailto:hello@opsmedia.co.kr" style="text-decoration:underline;">hello@opsmedia.co.kr</a>로 직접 연락주세요.';
+        }
+      }
+    });
+  }
 
   // Filter buttons (cosmetic)
   document.querySelectorAll('.filter-btn').forEach(b=>{
