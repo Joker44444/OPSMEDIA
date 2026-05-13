@@ -135,6 +135,20 @@
     padding:160px 0 80px;
     position:relative;
   }
+  .hero-grid{
+    display:flex;
+    flex-direction:column;
+    gap:80px;
+    align-items:stretch;
+  }
+  .hero-left{ position:relative; }
+
+  /* Hero form when placed on top, give it a max-width and center */
+  .hero-form{
+    max-width:640px;
+    margin:0 auto;
+    width:100%;
+  }
   .hero-tag{
     display:inline-flex; align-items:center; gap:10px;
     font-size:12.5px; letter-spacing:.22em; text-transform:uppercase;
@@ -148,8 +162,8 @@
   .hero h1{
     font-family:'Gowun Batang', serif;
     font-weight:700;
-    font-size:clamp(44px, 7.5vw, 104px);
-    line-height:1.02;
+    font-size:clamp(44px, 7vw, 96px);
+    line-height:1.04;
     letter-spacing:-.02em;
     color:var(--ink);
     margin-bottom:28px;
@@ -263,6 +277,107 @@
   }
   .hero-annot.a1{top:62%; right:8%; transform:rotate(4deg); text-align:center;}
   .hero-annot.a1 .arrow{font-size:30px; display:block;}
+
+  /* Hero-side compact form */
+  .hero-form{
+    background:var(--paper);
+    border:1px solid var(--ink);
+    border-radius:6px;
+    padding:30px 28px;
+    box-shadow:7px 7px 0 var(--ink);
+    position:relative;
+  }
+  .hero-form-eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:11.5px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  .hero-form-eyebrow::before{
+    content:""; width:20px; height:1px; background:var(--ink);
+  }
+  .hero-form-title{
+    font-family:'Gowun Batang', serif;
+    font-weight:700;
+    font-size:22px;
+    line-height:1.35;
+    margin-bottom:18px;
+    letter-spacing:-.01em;
+  }
+  .hero-form .form-field{ margin-bottom:14px; }
+  .hero-form .form-field:last-of-type{ margin-bottom:18px; }
+  .hero-form .form-field label{
+    display:block;
+    font-family:'Gowun Batang', serif;
+    font-size:10.5px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-weight:500;
+    margin-bottom:8px;
+    color:var(--ink-soft);
+  }
+  .hero-form .form-field label .req{color:var(--accent); margin-left:4px;}
+  .hero-form input,
+  .hero-form textarea,
+  .hero-form select{
+    width:100%;
+    padding:11px 14px;
+    border:1px solid var(--line-strong);
+    border-radius:4px;
+    background:var(--paper);
+    font-family:inherit;
+    font-size:14px;
+    color:var(--ink);
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .hero-form input:focus,
+  .hero-form textarea:focus,
+  .hero-form select:focus{
+    outline:none; border-color:var(--ink);
+    background:var(--paper-2);
+  }
+  .hero-form textarea{ min-height:80px; resize:vertical; }
+  .hero-form .form-row{
+    display:grid; grid-template-columns:1fr 1fr; gap:14px;
+  }
+  .hero-form .form-row .form-field{ margin-bottom:14px; }
+  .hero-form .chips{
+    display:flex; flex-wrap:wrap; gap:7px;
+  }
+  .hero-form .chip{
+    padding:7px 12px;
+    border:1px solid var(--line-strong);
+    border-radius:999px;
+    font-size:12.5px;
+    font-weight:500;
+    cursor:pointer;
+    transition:all .2s ease;
+    user-select:none;
+  }
+  .hero-form .chip:hover{ border-color:var(--ink); }
+  .hero-form .chip.on{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+  .hero-form-submit{
+    width:100%;
+    padding:14px 20px;
+    background:var(--ink); color:var(--paper);
+    border-radius:4px;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:.02em;
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    transition:transform .25s ease;
+  }
+  .hero-form-submit:hover{ transform:translateY(-2px); }
+  .hero-form-note{
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin-top:10px;
+    text-align:center;
+    line-height:1.5;
+  }
 
   /* ====== THROUGH-LINE GUIDE SYSTEM ====== */
   /* Vertical dotted line that runs through the entire page on the left */
@@ -924,6 +1039,7 @@
   /* ====== RESPONSIVE ====== */
   @media (max-width: 960px){
     .nav-links{display:none;}
+    .hero-grid{grid-template-columns:1fr; gap:48px;}
     .how{grid-template-columns:1fr;}
     .how-input{border-right:none; border-bottom:1px dashed var(--line-strong);}
     .how-arrow{display:none;}
@@ -1008,26 +1124,72 @@
 
 <!-- ===== HERO ===== -->
 <header class="hero">
-  <div class="section-mark" aria-hidden="true"><span class="idx">§ 00</span> Intro</div>
+  <div class="section-mark" aria-hidden="true"><span class="idx">§ 01</span> Get a plan</div>
   <span class="pawprint rot-1" style="top:200px; right:7%;" aria-hidden="true"><svg><use href="#paw"/></svg></span>
   <span class="pawprint tiny rot-2" style="top:260px; right:12%;" aria-hidden="true"><svg><use href="#paw"/></svg></span>
   <div class="wrap">
-    <div class="hero-tag">OpsMedia · AI Video Planning Studio</div>
-    <h1 class="reveal">
-      문의가 들어오는 순간,<br>
-      기획은 <span class="em">자동으로</span><br>
-      <span class="handwrite">시작됩니다.</span>
-    </h1>
-    <p class="hero-sub reveal">
-      <strong>MEDIACRAFT</strong>는 몇 가지 질문에 답하는 것만으로<br>
-      영상 문의를 브랜드 전략과 실행 가능한 기획안으로 바꾸는 <strong>AI 생성 솔루션</strong>입니다.
-    </p>
-    <div class="hero-ctas reveal">
-      <a href="#contact" class="btn btn-primary">
-        지금 기획 받아보기
-        <span class="arrow">→</span>
-      </a>
-      <a href="#how" class="btn btn-ghost">어떻게 작동하나요?</a>
+    <div class="hero-grid">
+      <!-- Inline contact form on the top -->
+      <form class="hero-form reveal" id="contact" onsubmit="event.preventDefault(); alert('기획 요청이 접수되었습니다. (데모 화면이므로 실제 전송되지 않습니다.)');">
+        <div class="hero-form-eyebrow">Get a plan</div>
+        <div class="hero-form-title">
+          질문에 답하면,<br>기획안이 옵니다.
+        </div>
+        <div class="form-field">
+          <label>이름 · 회사<span class="req">*</span></label>
+          <input type="text" placeholder="예: 김디렉터 / 옵스미디어" required />
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label>이메일<span class="req">*</span></label>
+            <input type="email" placeholder="hello@brand.co" required />
+          </div>
+          <div class="form-field">
+            <label>예산 범위</label>
+            <select>
+              <option>~ 1,000만원</option>
+              <option>1,000 ~ 3,000만원</option>
+              <option>3,000 ~ 5,000만원</option>
+              <option>5,000만원 이상</option>
+              <option>정해지지 않음</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>관심 있는 영역 (복수 선택)</label>
+          <div class="chips">
+            <span class="chip">회사 소개 영상</span>
+            <span class="chip">브랜드 캠페인</span>
+            <span class="chip">정기 콘텐츠</span>
+            <span class="chip">자동 응답형 제안</span>
+            <span class="chip">기타</span>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>이 영상의 목적은 무엇인가요?<span class="req">*</span></label>
+          <textarea placeholder="누구에게, 무엇을, 왜 보여주고 싶은지 자유롭게 적어주세요." required></textarea>
+        </div>
+        <button type="submit" class="hero-form-submit">
+          기획 요청 보내기 →
+        </button>
+        <p class="hero-form-note">접수 후 영업일 기준 1~3일 이내에 1차 기획안과 함께 회신드립니다.</p>
+      </form>
+
+      <div class="hero-left">
+        <div class="hero-tag">OpsMedia · AI Video Planning Studio</div>
+        <h1 class="reveal">
+          문의가 들어오는 순간,<br>
+          기획은 <span class="em">자동으로</span><br>
+          <span class="handwrite">시작됩니다.</span>
+        </h1>
+        <p class="hero-sub reveal">
+          <strong>MEDIACRAFT</strong>는 몇 가지 질문에 답하는 것만으로<br>
+          영상 문의를 브랜드 전략과 실행 가능한 기획안으로 바꾸는 <strong>AI 생성 솔루션</strong>입니다.
+        </p>
+        <div class="hero-ctas reveal">
+          <a href="#how" class="btn btn-ghost">어떻게 작동하나요?</a>
+        </div>
+      </div>
     </div>
 
     <!-- HERO ILLUSTRATION : the big cat -->
@@ -1094,7 +1256,7 @@
 
 <!-- ===== HOW IT WORKS ===== -->
 <section class="block" id="how">
-  <div class="section-mark" aria-hidden="true"><span class="idx">§ 01</span> How it works</div>
+  <div class="section-mark" aria-hidden="true"><span class="idx">§ 02</span> How it works</div>
   <span class="pawprint small rot-3" style="top:80px; left:18%;" aria-hidden="true"><svg><use href="#paw"/></svg></span>
   <div class="wrap">
     <div class="eyebrow">How it works</div>
@@ -1167,7 +1329,7 @@
 
 <!-- ===== WHY ===== -->
 <section class="block" id="why">
-  <div class="section-mark" aria-hidden="true"><span class="idx">§ 02</span> Approach</div>
+  <div class="section-mark" aria-hidden="true"><span class="idx">§ 03</span> Approach</div>
   <span class="pawprint rot-2" style="top:120px; right:6%;" aria-hidden="true"><svg><use href="#paw"/></svg></span>
   <span class="pawprint tiny rot-4" style="bottom:80px; left:8%;" aria-hidden="true"><svg><use href="#paw"/></svg></span>
   <div class="wrap">
@@ -1219,7 +1381,7 @@
 
 <!-- ===== PORTFOLIO ===== -->
 <section class="block portfolio" id="work">
-  <div class="section-mark" aria-hidden="true"><span class="idx">§ 03</span> Work</div>
+  <div class="section-mark" aria-hidden="true"><span class="idx">§ 04</span> Work</div>
   <span class="pawprint small rot-1" style="top:90px; left:12%;" aria-hidden="true"><svg><use href="#paw"/></svg></span>
   <div class="wrap">
     <div class="portfolio-head">
@@ -1344,7 +1506,7 @@
 
 <!-- ===== STATS ===== -->
 <section class="stats" style="position:relative;">
-  <div class="section-mark" aria-hidden="true"><span class="idx">§ 04</span> Numbers</div>
+  <div class="section-mark" aria-hidden="true"><span class="idx">§ 05</span> Numbers</div>
   <div class="wrap">
     <div class="stats-grid reveal">
       <div class="stat">
@@ -1369,7 +1531,7 @@
 
 <!-- ===== CLIENTS ===== -->
 <section class="block clients" id="clients">
-  <div class="section-mark" aria-hidden="true"><span class="idx">§ 05</span> Clients</div>
+  <div class="section-mark" aria-hidden="true"><span class="idx">§ 06</span> Clients</div>
   <span class="pawprint rot-3" style="top:140px; right:5%;" aria-hidden="true"><svg><use href="#paw"/></svg></span>
   <div class="wrap">
     <div class="clients-head">
@@ -1406,7 +1568,7 @@
 
 <!-- ===== QUOTE / MANIFESTO ===== -->
 <section class="quote">
-  <div class="section-mark" aria-hidden="true"><span class="idx">§ 06</span> Manifesto</div>
+  <div class="section-mark" aria-hidden="true"><span class="idx">§ 07</span> Manifesto</div>
   <span class="pawprint small rot-2" style="bottom:60px; right:10%;" aria-hidden="true"><svg><use href="#paw"/></svg></span>
   <span class="pawprint tiny rot-4" style="bottom:90px; right:14%;" aria-hidden="true"><svg><use href="#paw"/></svg></span>
   <div class="wrap">
@@ -1415,79 +1577,6 @@
       기획은 <span class="em">자동으로</span> 시작됩니다."
     </p>
     <div class="quote-attr">OpsMedia × MEDIACRAFT</div>
-  </div>
-</section>
-
-<!-- ===== CTA / CONTACT ===== -->
-<section class="cta" id="contact">
-  <div class="section-mark" aria-hidden="true"><span class="idx">§ 07</span> Get a plan</div>
-  <span class="pawprint rot-1" style="top:120px; left:5%;" aria-hidden="true"><svg><use href="#paw"/></svg></span>
-  <span class="pawprint tiny rot-3" style="top:180px; left:9%;" aria-hidden="true"><svg><use href="#paw"/></svg></span>
-  <div class="wrap">
-    <div class="cta-grid">
-      <div>
-        <div class="eyebrow">Get a plan</div>
-        <h2 class="cta-h reveal">
-          질문에 답하면,<br>
-          <span class="em">기획안이 옵니다.</span>
-        </h2>
-        <p class="cta-p reveal">
-          영상에 대한 막연한 생각을 다섯 가지 질문으로 정리해드립니다.
-          며칠 안에 브랜드 맥락이 반영된 1차 기획안과 실행 로드맵이 메일함에 도착합니다.
-        </p>
-
-        <!-- the cat resting beside the form -->
-        <svg class="cta-cat" viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g fill="none" stroke="#111" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M 30 82 Q 25 60 50 50 L 55 36 Q 60 26 66 38 L 68 50 Q 78 48 88 50 L 92 36 Q 98 26 103 40 L 105 52 Q 150 52 220 56 Q 270 60 295 70 Q 305 76 295 84 Q 270 92 220 90 Q 150 88 95 88 Q 50 88 30 82 Z"/>
-            <path d="M 55 70 Q 58 72 61 70 M 73 70 Q 76 72 79 70"/>
-            <path d="M 66 78 Q 68 80 70 78"/>
-            <path d="M 125 56 L 122 86 M 145 56 L 144 88 M 165 56 L 166 88 M 185 56 L 188 88 M 205 56 L 208 88 M 225 58 L 228 86 M 245 60 L 246 84 M 265 64 L 264 82"/>
-          </g>
-        </svg>
-      </div>
-
-      <form class="form reveal" onsubmit="event.preventDefault(); alert('기획 요청이 접수되었습니다. (데모 화면이므로 실제 전송되지 않습니다.)');">
-        <div class="form-field">
-          <label>이름 · 회사<span class="req">*</span></label>
-          <input type="text" placeholder="예: 김디렉터 / 옵스미디어" required />
-        </div>
-        <div class="form-row">
-          <div class="form-field">
-            <label>이메일<span class="req">*</span></label>
-            <input type="email" placeholder="hello@brand.co" required />
-          </div>
-          <div class="form-field">
-            <label>예산 범위</label>
-            <select>
-              <option>~ 1,000만원</option>
-              <option>1,000 ~ 3,000만원</option>
-              <option>3,000 ~ 5,000만원</option>
-              <option>5,000만원 이상</option>
-              <option>정해지지 않음</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-field">
-          <label>관심 있는 영역 (복수 선택)</label>
-          <div class="chips">
-            <span class="chip">회사 소개 영상</span>
-            <span class="chip">브랜드 캠페인</span>
-            <span class="chip">정기 콘텐츠</span>
-            <span class="chip">자동 응답형 제안</span>
-            <span class="chip">기타</span>
-          </div>
-        </div>
-        <div class="form-field">
-          <label>이 영상의 목적은 무엇인가요?<span class="req">*</span></label>
-          <textarea placeholder="누구에게, 무엇을, 왜 보여주고 싶은지 자유롭게 적어주세요." required></textarea>
-        </div>
-        <button type="submit" class="form-submit">
-          기획 요청 보내기 →
-        </button>
-        <p class="form-note">접수 후 영업일 기준 1~3일 이내에 1차 기획안과 함께 회신드립니다.</p>
-      </form>
-    </div>
   </div>
 </section>
 
