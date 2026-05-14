@@ -1166,6 +1166,53 @@
   .reveal{opacity:0; transform:translateY(20px); transition:opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1);}
   .reveal.in{opacity:1; transform:none;}
 
+  /* ====== Sister brand strip (LAWCRAFT) ====== */
+  .sister-brand{
+    margin:32px 0 24px;
+    padding:20px 24px;
+    border:1px solid var(--ink);
+    border-radius:4px;
+    background:var(--paper-2);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .sister-brand:hover{
+    transform:translate(-1px,-1px);
+    box-shadow:4px 4px 0 var(--ink);
+  }
+  .sister-brand-label{
+    font-size:10.5px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--ink-soft);
+  }
+  .sister-brand-link{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    text-decoration:none;
+    color:inherit;
+  }
+  .sister-brand-name{
+    font-family:'Gowun Batang',serif;
+    font-weight:700;
+    font-size:18px;
+    letter-spacing:.04em;
+    color:var(--ink);
+  }
+  .sister-brand-tag{
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+  @media (max-width:560px){
+    .sister-brand{flex-direction:column; align-items:flex-start; gap:12px;}
+  }
+
 </style>
 </head>
 <body>
@@ -1740,6 +1787,18 @@
         <a href="#">Instagram</a>
       </div>
     </div>
+
+    <!-- Sister brand strip -->
+    <a href="/lawcraft" class="sister-brand-link">
+      <div class="sister-brand">
+        <span class="sister-brand-label">OpsMedia 자매 솔루션</span>
+        <span style="display:flex; align-items:baseline; gap:14px;">
+          <span class="sister-brand-name">LAWCRAFT</span>
+          <span class="sister-brand-tag">법률 영상 마케팅 솔루션 →</span>
+        </span>
+      </div>
+    </a>
+    
     <div class="foot-bottom">
       <span>© 2021 OpsMedia. All rights reserved. 대표 강지민</span>
       <span>Made with care · MEDIACRAFT</span>
