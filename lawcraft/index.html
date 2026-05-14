@@ -1,1 +1,1261 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LAWCRAFT · 법률 서비스 조직을 위한 영상 마케팅</title>
+<meta name="description" content="변호사·로펌·법률사무소의 영상 브랜딩과 운영을 컴플라이언스부터 성과까지 한 번에 해결합니다." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#111111;
+    --ink-soft:#2a2a2a;
+    --ink-mute:#6b6b6b;
+    --paper:#f4f1ea;
+    --paper-2:#ece8df;
+    --paper-3:#e2ddd1;
+    --line:rgba(17,17,17,.18);
+    --line-strong:rgba(17,17,17,.55);
+  }
 
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Gowun Batang','Malgun Gothic',serif;
+    font-weight:400;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+    word-break:keep-all;
+    word-wrap:break-word;
+  }
+
+  /* Paper grain */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    background-image:
+      radial-gradient(rgba(17,17,17,0.035) 1px, transparent 1px),
+      radial-gradient(rgba(17,17,17,0.02) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 1px 2px;
+    mix-blend-mode:multiply;
+    z-index:1;
+  }
+
+  /* Dotted guide line on left */
+  body::after{
+    content:"";
+    position:fixed; left:24px; top:0; bottom:0;
+    width:0;
+    border-left:1px dashed var(--line);
+    z-index:2;
+    pointer-events:none;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+  img,svg{display:block;max-width:100%;}
+
+  .wrap{
+    max-width:1240px;
+    margin:0 auto;
+    padding:0 64px;
+    position:relative;
+    z-index:3;
+  }
+  @media (max-width:720px){
+    .wrap{padding:0 28px;}
+  }
+
+  /* ============ NAV ============ */
+  .nav{
+    position:fixed; top:0; left:0; right:0;
+    z-index:50;
+    backdrop-filter: blur(8px) saturate(1.1);
+    background:rgba(244,241,234,0.78);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:12px 0;
+  }
+  .brand{
+    display:flex; align-items:baseline; gap:6px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.08em;
+    color:var(--ink);
+  }
+  .brand .mark{ font-size:11px; letter-spacing:.18em; }
+  .brand .by{ font-size:9px; font-weight:400; color:var(--ink-mute); letter-spacing:.04em; }
+  .nav-cta{
+    border:1px solid var(--ink);
+    padding:8px 18px;
+    border-radius:999px;
+    font-size:12.5px;
+    font-weight:700;
+    background:var(--paper);
+    transition: all .25s ease;
+  }
+  .nav-cta:hover{ background:var(--ink); color:var(--paper); }
+  .nav-back{
+    font-size:11px;
+    color:var(--ink-mute);
+    letter-spacing:.04em;
+  }
+  .nav-back:hover{ color:var(--ink); }
+
+  /* ============ SECTION COMMON ============ */
+  section.block{
+    padding:140px 0 80px;
+    position:relative;
+  }
+  .section-mark{
+    position:absolute;
+    top:60px;
+    right:64px;
+    font-size:11px;
+    letter-spacing:.18em;
+    color:var(--ink-mute);
+    font-weight:700;
+  }
+  .section-mark .idx{
+    color:var(--ink);
+    margin-right:6px;
+  }
+  @media (max-width:720px){
+    .section-mark{ right:28px; top:48px; }
+  }
+  /* hero section's section-mark — hidden because the eyebrow already says "LAWCRAFT · Legal Video Marketing" */
+  .hero .section-mark{ display:none; }
+  .eyebrow{
+    font-size:11px;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--ink-soft);
+    display:inline-flex; align-items:center; gap:12px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:"";width:24px;height:1px;background:var(--ink);
+  }
+  .section-title{
+    font-weight:700;
+    font-size:clamp(34px, 4.4vw, 56px);
+    line-height:1.18;
+    letter-spacing:-.01em;
+    max-width:900px;
+    margin-bottom:28px;
+  }
+  .section-lede{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:680px;
+    line-height:1.75;
+  }
+
+  /* ============ HERO + FORM (§01) ============ */
+  .hero{
+    padding:140px 0 60px;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap:80px;
+    align-items:flex-start;
+  }
+  @media (max-width:960px){
+    .hero-grid{grid-template-columns:1fr; gap:48px;}
+  }
+  .hero-left .eyebrow{ margin-bottom:32px; }
+  .hero-h1{
+    font-weight:700;
+    font-size:clamp(36px, 4.8vw, 64px);
+    line-height:1.18;
+    letter-spacing:-.02em;
+    margin-bottom:28px;
+    word-break:keep-all;
+    word-wrap:break-word;
+  }
+  .hero-h1 .accent{
+    position:relative;
+    display:inline-block;
+  }
+  .hero-h1 .accent::after{
+    content:""; position:absolute;
+    left:-4px; right:-4px; bottom:8%;
+    height:14%;
+    background:var(--ink);
+    opacity:.1;
+    z-index:-1;
+  }
+  .hero-sub{
+    font-size:17px;
+    color:var(--ink-soft);
+    line-height:1.8;
+    max-width:520px;
+    margin-bottom:36px;
+  }
+  .hero-sub strong{font-weight:700;color:var(--ink);}
+
+  /* sketch icons row */
+  .hero-icons{
+    display:flex; gap:28px;
+    margin-top:36px;
+    align-items:flex-end;
+    flex-wrap:wrap;
+  }
+  .hero-icon{
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    width:80px;
+  }
+  .hero-icon svg{ width:48px; height:48px; }
+  .hero-icon .lbl{
+    font-size:11px;
+    color:var(--ink-mute);
+    letter-spacing:.04em;
+    text-align:center;
+    line-height:1.4;
+  }
+
+  /* form on the right */
+  .hero-form{
+    background:var(--paper);
+    border:1px solid var(--ink);
+    border-radius:6px;
+    padding:32px;
+    box-shadow:7px 7px 0 var(--ink);
+    position:relative;
+  }
+  .hero-form-eyebrow{
+    font-size:11px;
+    letter-spacing:.22em;
+    font-weight:700;
+    color:var(--ink-mute);
+    margin-bottom:10px;
+  }
+  .hero-form-title{
+    font-size:22px;
+    font-weight:700;
+    line-height:1.35;
+    margin-bottom:22px;
+  }
+  .form-field{ margin-bottom:18px; }
+  .form-field label{
+    display:block;
+    font-size:11px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    font-weight:700;
+    margin-bottom:8px;
+    color:var(--ink-soft);
+  }
+  .form-field label .req{ color:#c0392b; margin-left:4px; }
+  .form-field input,
+  .form-field textarea,
+  .form-field select{
+    width:100%;
+    padding:12px 14px;
+    border:1px solid var(--line-strong);
+    border-radius:4px;
+    background:var(--paper);
+    font-family:inherit;
+    font-size:15px;
+    color:var(--ink);
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .form-field input:focus,
+  .form-field textarea:focus,
+  .form-field select:focus{
+    outline:none; border-color:var(--ink);
+    background:var(--paper-2);
+  }
+  .form-field textarea{min-height:100px; resize:vertical;}
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  @media (max-width:560px){ .form-row{grid-template-columns:1fr;} }
+  .chips{ display:flex; flex-wrap:wrap; gap:6px; }
+  .chip{
+    padding:6px 12px;
+    border:1px solid var(--line-strong);
+    border-radius:999px;
+    font-size:12px;
+    font-weight:500;
+    cursor:pointer;
+    transition:all .2s ease;
+    user-select:none;
+  }
+  .chip:hover{ border-color:var(--ink); }
+  .chip.on{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+  .hero-form-submit{
+    width:100%;
+    padding:15px 20px;
+    background:var(--ink); color:var(--paper);
+    border-radius:4px;
+    font-size:14.5px;
+    font-weight:700;
+    letter-spacing:.02em;
+    margin-top:8px;
+    transition:transform .25s ease;
+  }
+  .hero-form-submit:hover{ transform:translateY(-2px); }
+  .hero-form-submit:disabled{ opacity:.7; cursor:wait; }
+  .hero-form-note{
+    font-size:11px;
+    color:var(--ink-mute);
+    margin-top:12px;
+    text-align:center;
+    line-height:1.5;
+  }
+
+  /* ============ §02 PROBLEM (5가지 공통 과제) ============ */
+  .problem-grid{
+    margin-top:56px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:18px;
+  }
+  @media (max-width:960px){ .problem-grid{ grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .problem-grid{ grid-template-columns:1fr;} }
+
+  .problem-card{
+    border:1px solid var(--ink);
+    border-radius:6px;
+    padding:24px 20px;
+    background:var(--paper);
+    transition: transform .3s ease, box-shadow .3s ease;
+    position:relative;
+  }
+  .problem-card:hover{
+    transform:translateY(-3px);
+    box-shadow:4px 4px 0 var(--ink);
+  }
+  .problem-num{
+    font-size:11px;
+    letter-spacing:.2em;
+    color:var(--ink-mute);
+    margin-bottom:14px;
+  }
+  .problem-title{
+    font-size:17px;
+    font-weight:700;
+    line-height:1.4;
+    margin-bottom:12px;
+    padding-bottom:12px;
+    border-bottom:1px solid var(--line);
+  }
+  .problem-desc{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.65;
+    min-height:60px;
+  }
+  .problem-icon{
+    width:32px; height:32px;
+    margin-top:14px;
+    color:var(--ink);
+    opacity:.7;
+  }
+
+  /* ============ §03 HOW IT WORKS (5단계) ============ */
+  .steps{
+    margin-top:56px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+    position:relative;
+  }
+  @media (max-width:960px){ .steps{grid-template-columns:1fr;} }
+  .step{
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:24px 20px;
+    background:var(--paper);
+    position:relative;
+  }
+  .step-num{
+    position:absolute;
+    top:-12px; left:20px;
+    width:24px; height:24px;
+    background:var(--ink); color:var(--paper);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:11px;
+    font-weight:700;
+  }
+  .step-title{
+    font-size:16px;
+    font-weight:700;
+    margin-bottom:10px;
+    margin-top:8px;
+  }
+  .step-desc{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+  .step:not(:last-child)::after{
+    content:"→";
+    position:absolute;
+    right:-18px; top:50%;
+    transform:translateY(-50%);
+    font-size:18px;
+    color:var(--ink);
+    z-index:2;
+  }
+  @media (max-width:960px){
+    .step:not(:last-child)::after{
+      content:"↓";
+      right:50%; top:auto; bottom:-22px;
+      transform:translateX(50%);
+    }
+  }
+
+  .step-stats{
+    margin-top:36px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+  }
+  @media (max-width:720px){ .step-stats{grid-template-columns:repeat(2,1fr);} }
+  .step-stat{
+    padding:18px 16px;
+    background:var(--paper-2);
+    border-radius:6px;
+    text-align:center;
+  }
+  .step-stat .v{
+    font-size:18px;
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .step-stat .k{
+    font-size:11px;
+    letter-spacing:.12em;
+    color:var(--ink-mute);
+  }
+
+  /* ============ §04 SAMPLE ============ */
+  .sample-grid{
+    margin-top:56px;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:18px;
+  }
+  @media (max-width:960px){ .sample-grid{grid-template-columns:1fr; gap:24px;} }
+  .sample-card{
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    overflow:hidden;
+    background:var(--paper);
+    box-shadow:5px 5px 0 var(--ink);
+    transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease;
+    cursor:pointer;
+  }
+  .sample-card:hover{
+    transform:translate(-2px,-2px);
+    box-shadow:7px 7px 0 var(--ink);
+  }
+  .sample-thumb{
+    aspect-ratio:16/10;
+    background:var(--paper-3);
+    display:flex; align-items:center; justify-content:center;
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  .sample-tag{
+    position:absolute;
+    top:10px; left:12px;
+    font-size:10px;
+    letter-spacing:.2em;
+    font-weight:700;
+    background:var(--paper);
+    border:1px solid var(--ink);
+    border-radius:3px;
+    padding:4px 9px;
+  }
+  .sample-thumb svg{ width:64px; height:64px; opacity:.55; }
+  .sample-meta{
+    padding:20px;
+  }
+  .sample-cat{
+    font-size:10.5px;
+    letter-spacing:.18em;
+    color:var(--ink-mute);
+    margin-bottom:8px;
+    text-transform:uppercase;
+  }
+  .sample-title{
+    font-size:17px;
+    font-weight:700;
+    line-height:1.4;
+    margin-bottom:8px;
+  }
+  .sample-desc{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .sample-note{
+    margin-top:36px;
+    padding:20px 24px;
+    border:1px dashed var(--line-strong);
+    border-radius:6px;
+    background:var(--paper);
+    font-size:13.5px;
+    color:var(--ink-mute);
+    line-height:1.7;
+    text-align:center;
+  }
+  .sample-note strong{ color:var(--ink); font-weight:700; }
+
+  /* ============ §05 WHY ONLY US (4가지) ============ */
+  .why-grid{
+    margin-top:56px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+  }
+  @media (max-width:720px){ .why-grid{grid-template-columns:1fr;} }
+  .why-card{
+    border:1px solid var(--ink);
+    border-radius:6px;
+    padding:32px 28px;
+    background:var(--paper);
+    position:relative;
+  }
+  .why-card .why-num{
+    font-size:12px;
+    letter-spacing:.2em;
+    font-weight:700;
+    color:var(--ink-mute);
+    margin-bottom:14px;
+  }
+  .why-card h3{
+    font-size:24px;
+    font-weight:700;
+    margin-bottom:14px;
+    line-height:1.3;
+  }
+  .why-card p{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.7;
+    margin-bottom:18px;
+  }
+  .why-pill{
+    display:inline-block;
+    background:var(--ink); color:var(--paper);
+    padding:6px 14px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.04em;
+  }
+
+  /* ============ §06 NUMBERS ============ */
+  .numbers-row{
+    margin-top:56px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    border-top:1px solid var(--line-strong);
+    border-bottom:1px solid var(--line-strong);
+  }
+  @media (max-width:720px){ .numbers-row{grid-template-columns:repeat(2,1fr);} }
+  .number-cell{
+    padding:36px 24px;
+    border-right:1px solid var(--line);
+    text-align:left;
+  }
+  .number-cell:last-child{ border-right:none; }
+  @media (max-width:720px){
+    .number-cell:nth-child(2){border-right:none;}
+    .number-cell:nth-child(1),.number-cell:nth-child(2){border-bottom:1px solid var(--line);}
+  }
+  .number-v{
+    font-size:clamp(40px, 4.5vw, 56px);
+    font-weight:700;
+    line-height:1;
+    letter-spacing:-.02em;
+    margin-bottom:10px;
+  }
+  .number-v .unit{
+    font-size:.35em;
+    font-weight:400;
+    color:var(--ink-mute);
+    margin-left:4px;
+    vertical-align:top;
+    position:relative;
+    top:.8em;
+  }
+  .number-k{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.55;
+    max-width:200px;
+  }
+  .numbers-disclaimer{
+    margin-top:18px;
+    font-size:11px;
+    color:var(--ink-mute);
+    text-align:right;
+    letter-spacing:.04em;
+  }
+
+  /* ============ §07 TRUST (참여 기업) ============ */
+  .trust-grid{
+    margin-top:56px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line);
+    border-left:1px solid var(--line);
+  }
+  @media (max-width:720px){ .trust-grid{grid-template-columns:repeat(2,1fr);} }
+  .trust-cell{
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    aspect-ratio: 5/3;
+    display:flex; align-items:center; justify-content:center;
+    padding:20px;
+    transition:background .25s ease;
+  }
+  .trust-cell:hover{ background:var(--paper-2); }
+  .trust-cell .n{
+    font-size:15px;
+    font-weight:700;
+    text-align:center;
+    line-height:1.4;
+    color:var(--ink);
+  }
+  .trust-cell .n small{
+    display:block;
+    font-size:10.5px;
+    color:var(--ink-mute);
+    font-weight:400;
+    margin-top:4px;
+    letter-spacing:.06em;
+  }
+  .trust-note{
+    margin-top:24px;
+    font-size:12px;
+    color:var(--ink-mute);
+    text-align:center;
+    line-height:1.6;
+  }
+
+  /* ============ §08 MANIFESTO ============ */
+  .manifesto{
+    background:var(--ink);
+    color:var(--paper);
+    padding:120px 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .manifesto::before{
+    content:"\201C";
+    position:absolute;
+    top:-50px; left:48px;
+    font-size:300px;
+    line-height:1;
+    color:rgba(244,241,234,.07);
+    z-index:0;
+  }
+  .manifesto .wrap{ position:relative; z-index:1; }
+  .manifesto-text{
+    font-weight:700;
+    font-size:clamp(28px, 3.6vw, 44px);
+    line-height:1.4;
+    max-width:920px;
+    letter-spacing:-.01em;
+  }
+  .manifesto-attr{
+    margin-top:32px;
+    font-size:12.5px;
+    letter-spacing:.18em;
+    color:rgba(244,241,234,.65);
+    display:flex; align-items:center; gap:14px;
+  }
+  .manifesto-attr::before{
+    content:""; width:36px; height:1px; background:rgba(244,241,234,.4);
+  }
+
+  /* ============ FOOTER ============ */
+  footer{
+    border-top:1px solid var(--line-strong);
+    padding:56px 0 36px;
+    background:var(--paper);
+  }
+  .foot-top{
+    display:grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap:48px;
+    margin-bottom:48px;
+  }
+  @media (max-width:720px){ .foot-top{grid-template-columns:1fr; gap:28px;} }
+  .foot-brand-line{
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:14px;
+    letter-spacing:.04em;
+  }
+  .foot-tag{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.7;
+    max-width:360px;
+  }
+  .foot-col h5{
+    font-size:10.5px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    font-weight:700;
+    margin-bottom:16px;
+    color:var(--ink-soft);
+  }
+  .foot-col a{
+    display:block;
+    font-size:13.5px;
+    padding:4px 0;
+    transition:opacity .2s ease;
+    color:var(--ink-soft);
+  }
+  .foot-col a:hover{ color:var(--ink); }
+  .foot-bottom{
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+    font-size:11.5px;
+    color:var(--ink-mute);
+    flex-wrap:wrap; gap:14px;
+  }
+  .foot-bottom .sibling{
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .foot-bottom .sibling a{
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--line);
+    padding-bottom:1px;
+  }
+  .foot-bottom .sibling a:hover{ color:var(--ink); border-bottom-color:var(--ink); }
+
+  /* fade-in on scroll */
+  .reveal{opacity:0; transform:translateY(20px); transition:opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1; transform:none;}
+
+  /* drawing animation for hero svg */
+  .draw{
+    /* stroke-dasharray animation removed for complex paths - they render reliably without it */
+  }
+  .hero-icon svg .draw{
+    /* allow simple animation only on simple closed shapes */
+    opacity:0;
+    animation: fadeInDraw 1s ease-out .4s forwards;
+  }
+  .hero-icon svg .draw.d2{ animation-delay:.7s; }
+  .hero-icon svg .draw.d3{ animation-delay:1s; }
+  @keyframes fadeInDraw{
+    from{ opacity:0; transform:translateY(6px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand" aria-label="LAWCRAFT by OpsMedia">
+      <span class="mark">LAWCRAFT</span>
+      <span class="by">by OpsMedia</span>
+    </a>
+    <div style="display:flex; align-items:center; gap:20px;">
+      <a href="/" class="nav-back">← OpsMedia</a>
+      <a href="#contact" class="nav-cta">기획 진단</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== §01 HERO + FORM ===== -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="section-mark" aria-hidden="true"><span class="idx">§ 01</span> Get a plan</div>
+
+    <div class="hero-grid">
+      <!-- LEFT -->
+      <div class="hero-left">
+        <div class="eyebrow">LAWCRAFT · Legal Video Marketing</div>
+        <h1 class="hero-h1 reveal">
+          법률 전문가의<br>
+          영상 제작,<br>
+          <span class="accent">우리가 대신 고민합니다.</span>
+        </h1>
+        <p class="hero-sub reveal">
+          광고 규정부터 운영 전략까지 — 변호사·로펌이 가장 어려워하는 부분만 떼서 해결합니다.
+          <strong>AI 기획 + 컴플라이언스 검수 + 정기 운영</strong>을 하나의 흐름으로 연결합니다.
+        </p>
+
+        <!-- four small hand-drawn icons -->
+        <div class="hero-icons reveal" aria-hidden="true">
+          <div class="hero-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path class="draw" d="M24 6 L10 12 L10 24 Q10 34 24 42 Q38 34 38 24 L38 12 Z M17 24 L22 29 L31 19"/>
+            </svg>
+            <span class="lbl">법률 컴플라이언스</span>
+          </div>
+          <div class="hero-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect class="draw d2" x="8" y="12" width="32" height="24" rx="2"/>
+              <path class="draw d2" d="M20 20 L20 28 L28 24 Z" fill="currentColor"/>
+            </svg>
+            <span class="lbl">영상 기획·제작</span>
+          </div>
+          <div class="hero-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect class="draw d2" x="10" y="10" width="28" height="28" rx="3"/>
+              <text class="draw d2" x="24" y="29" text-anchor="middle" font-size="11" font-weight="700" font-family="Gowun Batang" stroke-width="0" fill="currentColor">AI</text>
+            </svg>
+            <span class="lbl">AI 기획 엔진</span>
+          </div>
+          <div class="hero-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path class="draw d3" d="M8 38 L18 26 L26 32 L40 14"/>
+              <circle class="draw d3" cx="8" cy="38" r="2" fill="currentColor"/>
+              <circle class="draw d3" cx="18" cy="26" r="2" fill="currentColor"/>
+              <circle class="draw d3" cx="26" cy="32" r="2" fill="currentColor"/>
+              <circle class="draw d3" cx="40" cy="14" r="2" fill="currentColor"/>
+            </svg>
+            <span class="lbl">상담 전환 운영</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: FORM -->
+      <form class="hero-form reveal" id="contact">
+        <div class="hero-form-eyebrow">Get a plan · 무료 진단</div>
+        <div class="hero-form-title">
+          질문에 답하시면,<br>맞춤 진단을 보내드립니다.
+        </div>
+        <div class="form-field">
+          <label>이름 · 로펌<span class="req">*</span></label>
+          <input type="text" name="name" placeholder="예: 김변호사 / OO로펌" required />
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label>이메일<span class="req">*</span></label>
+            <input type="email" name="email" placeholder="lawyer@firm.kr" required />
+          </div>
+          <div class="form-field">
+            <label>조직 형태</label>
+            <select name="org">
+              <option>로펌</option>
+              <option>법률사무소</option>
+              <option>전문 변호사 개인</option>
+              <option>기업 법무팀</option>
+              <option>기타</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>관심 분야 (복수 선택)</label>
+          <div class="chips" id="interestChips">
+            <span class="chip" data-value="유튜브 제작">유튜브 제작</span>
+            <span class="chip" data-value="쇼츠 제작">쇼츠 제작</span>
+            <span class="chip" data-value="AI 콘텐츠">AI 콘텐츠</span>
+            <span class="chip" data-value="법률 브랜딩">법률 브랜딩</span>
+            <span class="chip" data-value="채널 운영">채널 운영</span>
+          </div>
+          <input type="hidden" name="interests" id="interestsHidden" />
+        </div>
+        <div class="form-field">
+          <label>지금 가장 어려운 점<span class="req">*</span></label>
+          <textarea name="purpose" placeholder="영상 제작·운영에서 가장 어려운 점을 적어주세요. (예: 광고 규정 검토가 부담, 주제 발굴이 어려움 등)" required></textarea>
+        </div>
+        <button type="submit" class="hero-form-submit" id="heroFormSubmit">
+          <span class="hero-form-submit-label">진단 요청 보내기 →</span>
+        </button>
+        <p class="hero-form-note" id="heroFormNote">접수 후 영업일 기준 1~3일 이내에 맞춤 진단과 함께 회신드립니다.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== §02 THE PROBLEM ===== -->
+<section class="block" id="problem">
+  <div class="wrap">
+    <div class="section-mark" aria-hidden="true"><span class="idx">§ 02</span> The Problem</div>
+    <div class="eyebrow">법률 서비스 조직의 5가지 공통 과제</div>
+    <h2 class="section-title reveal">
+      변호사들이 우리에게<br>실제로 털어놓은 문제.
+    </h2>
+    <p class="section-lede reveal">
+      현직 변호사·로펌 운영팀과 인터뷰하며 반복해서 들은 다섯 가지. 영상은 만들고 싶은데, 만드는 과정이 비즈니스를 막습니다.
+    </p>
+
+    <div class="problem-grid reveal">
+      <article class="problem-card">
+        <div class="problem-num">01 / 05</div>
+        <h3 class="problem-title">광고 규정 위반이 두렵다</h3>
+        <p class="problem-desc">일반 영상사는 변호사법·대한변협 광고규정을 잘 모릅니다. 제작 후 직접 검토해야 하는 부담.</p>
+      </article>
+      <article class="problem-card">
+        <div class="problem-num">02 / 05</div>
+        <h3 class="problem-title">주제를 계속 짜내기 어렵다</h3>
+        <p class="problem-desc">기획은 전문가의 영역인데, 본업과 병행하며 정기 콘텐츠를 만들기란 거의 불가능에 가깝습니다.</p>
+      </article>
+      <article class="problem-card">
+        <div class="problem-num">03 / 05</div>
+        <h3 class="problem-title">촬영 시간을 내기 어렵다</h3>
+        <p class="problem-desc">1회 풀촬영을 강요하는 제작 구조. 전문가의 시간은 가장 비싼 자원인데도 효율이 낮습니다.</p>
+      </article>
+      <article class="problem-card">
+        <div class="problem-num">04 / 05</div>
+        <h3 class="problem-title">운영 전략이 약하다</h3>
+        <p class="problem-desc">제작은 했지만 알고리즘·썸네일·시리즈 전략이 없어 콘텐츠가 묻혀버립니다.</p>
+      </article>
+      <article class="problem-card">
+        <div class="problem-num">05 / 05</div>
+        <h3 class="problem-title">상담 전환으로 이어지지 않는다</h3>
+        <p class="problem-desc">영상 랜딩부터 상담 예약까지의 전환 동선이 설계되어 있지 않아 조회수가 매출로 바뀌지 않습니다.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== §03 HOW IT WORKS ===== -->
+<section class="block" id="how">
+  <div class="wrap">
+    <div class="section-mark" aria-hidden="true"><span class="idx">§ 03</span> How it works</div>
+    <div class="eyebrow">5단계 솔루션 아키텍처</div>
+    <h2 class="section-title reveal">
+      질문에서 성과까지,<br>다섯 단계로 연결합니다.
+    </h2>
+    <p class="section-lede reveal">
+      전략 수립부터 성과 분석까지 유기적으로 연결된 AI 기반 프로세스. 전문가는 인터뷰만, 나머지는 우리가.
+    </p>
+
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4 class="step-title">법률 진단 인터뷰</h4>
+        <p class="step-desc">전문 분야·타깃·금기 표현을 구조화합니다.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4 class="step-title">AI 콘텐츠 설계</h4>
+        <p class="step-desc">AI Planning 엔진으로 분기 콘텐츠 캘린더를 자동 생성합니다.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4 class="step-title">컴플라이언스 검수</h4>
+        <p class="step-desc">광고 규정 사전 체크리스트 통과 후 제작 착수합니다.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4 class="step-title">효율 촬영·제작</h4>
+        <p class="step-desc">월 1회 인터뷰 촬영으로 4~8편을 분할 제작합니다.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <h4 class="step-title">운영 + 전환 설계</h4>
+        <p class="step-desc">썸네일·시리즈·상담 동선까지 풀퍼널로 운영합니다.</p>
+      </div>
+    </div>
+
+    <div class="step-stats reveal">
+      <div class="step-stat"><div class="v">월 1회</div><div class="k">인터뷰</div></div>
+      <div class="step-stat"><div class="v">4–8편</div><div class="k">발행</div></div>
+      <div class="step-stat"><div class="v">90분</div><div class="k">전문가 투입</div></div>
+      <div class="step-stat"><div class="v">상담 전환</div><div class="k">중심 운영</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== §04 SAMPLE ===== -->
+<section class="block" id="sample">
+  <div class="wrap">
+    <div class="section-mark" aria-hidden="true"><span class="idx">§ 04</span> Sample</div>
+    <div class="eyebrow">Sample Output · 결과물 예시</div>
+    <h2 class="section-title reveal">
+      이런 결과물이<br>당신의 채널에 쌓입니다.
+    </h2>
+    <p class="section-lede reveal">
+      아래는 LAWCRAFT가 가상의 전문 분야로 설계한 영상 콘텐츠 샘플입니다. 실제 결과물은 로펌의 전문 분야·타깃·톤에 맞춰 매번 새로 설계됩니다.
+    </p>
+
+    <div class="sample-grid reveal">
+      <article class="sample-card">
+        <div class="sample-thumb">
+          <span class="sample-tag">샘플 / 이혼</span>
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M32 8 L32 56 M16 56 L48 56 M22 16 L10 36 Q10 40 16 40 L28 40 Q32 40 32 36 M32 16 L44 36 Q44 40 50 40 L62 40 Q56 40 56 36"/>
+          </svg>
+        </div>
+        <div class="sample-meta">
+          <div class="sample-cat">Brand Series · 이혼 전문 로펌</div>
+          <div class="sample-title">"이혼, 가장 먼저 알아야 할 5가지"</div>
+          <div class="sample-desc">신뢰 형성 중심의 5부작 시리즈. 1회 촬영 → 분할 편집으로 채널 일관성 확보.</div>
+        </div>
+      </article>
+      <article class="sample-card">
+        <div class="sample-thumb">
+          <span class="sample-tag">샘플 / 형사</span>
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="10" y="14" width="44" height="32" rx="2"/>
+            <path d="M26 24 L26 36 L38 30 Z" fill="currentColor"/>
+            <path d="M14 50 L50 50"/>
+          </svg>
+        </div>
+        <div class="sample-meta">
+          <div class="sample-cat">Shorts · 형사 전문 변호사</div>
+          <div class="sample-title">"사례 중심 쇼츠 8편"</div>
+          <div class="sample-desc">검색 의도 기반 쇼츠 시리즈. 시청 완료율 ↑ + 본 영상 유입 동선 설계.</div>
+        </div>
+      </article>
+      <article class="sample-card">
+        <div class="sample-thumb">
+          <span class="sample-tag">샘플 / 기업법무</span>
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="14" y="12" width="36" height="40" rx="2"/>
+            <path d="M20 22 L44 22 M20 30 L44 30 M20 38 L36 38"/>
+            <circle cx="44" cy="44" r="6"/>
+          </svg>
+        </div>
+        <div class="sample-meta">
+          <div class="sample-cat">FAQ Guide · 기업 법무팀</div>
+          <div class="sample-title">"실무자가 묻는 12가지"</div>
+          <div class="sample-desc">정기 발행되는 FAQ 가이드. 자료가 쌓이며 검색 유입 자산으로 누적.</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="sample-note reveal">
+      <strong>— 위 사례는 실제 클라이언트가 아닌 LAWCRAFT가 설계한 가상의 샘플입니다.</strong><br>
+      실제 결과물은 로펌의 전문 분야·타깃·예산에 맞춰 매번 새로 설계됩니다.
+    </div>
+  </div>
+</section>
+
+<!-- ===== §05 WHY ONLY US ===== -->
+<section class="block" id="why">
+  <div class="wrap">
+    <div class="section-mark" aria-hidden="true"><span class="idx">§ 05</span> Why only us</div>
+    <div class="eyebrow">LAWCRAFT만 가능한 4가지</div>
+    <h2 class="section-title reveal">
+      일반 영상사도,<br>법률 마케팅 대행사도<br>가지지 못한 조합.
+    </h2>
+
+    <div class="why-grid reveal">
+      <div class="why-card">
+        <div class="why-num">01 / 04</div>
+        <h3>법률 컴플라이언스</h3>
+        <p>변호사법 및 대한변협 광고규정을 반영한 사전 체크리스트. 위반 가능 표현을 제작 단계에서 자동 플래깅합니다.</p>
+        <span class="why-pill">광고 제재 0건 보장</span>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02 / 04</div>
+        <h3>AI 기획 효율</h3>
+        <p>AI Planning 엔진이 분기 단위 콘텐츠 캘린더를 자동 설계. 전문가는 답변만, 구조는 AI가.</p>
+        <span class="why-pill">기획 시간 70% 단축</span>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03 / 04</div>
+        <h3>성과 중심 운영</h3>
+        <p>조회수가 아닌 상담 전환을 KPI로. 랜딩과 예약 폼까지 퍼널을 설계하고, 월간 성과 리포트를 제공합니다.</p>
+        <span class="why-pill">문의 전환율 3배 ↑ 목표</span>
+      </div>
+      <div class="why-card">
+        <div class="why-num">04 / 04</div>
+        <h3>제작 스토리텔링</h3>
+        <p>단순 정보 전달이 아닌 사례·서사·캐릭터 중심의 영상. 변호사의 인격이 기억되는 브랜딩.</p>
+        <span class="why-pill">구독자 락인 80%+</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== §06 NUMBERS ===== -->
+<section class="block" id="numbers">
+  <div class="wrap">
+    <div class="section-mark" aria-hidden="true"><span class="idx">§ 06</span> Numbers</div>
+    <div class="eyebrow">왜 지금, 법률 영상인가</div>
+    <h2 class="section-title reveal">
+      세 가지 흐름이<br>동시에 일어나고 있습니다.
+    </h2>
+
+    <div class="numbers-row reveal">
+      <div class="number-cell">
+        <div class="number-v">35,000<span class="unit">명+</span></div>
+        <div class="number-k">국내 변호사 수, 차별화 경쟁 심화 단계 진입</div>
+      </div>
+      <div class="number-cell">
+        <div class="number-v">1,700<span class="unit">명/년</span></div>
+        <div class="number-k">매년 신규 진입 변호사. 신뢰 자산 구축 시급</div>
+      </div>
+      <div class="number-cell">
+        <div class="number-v">70<span class="unit">%</span></div>
+        <div class="number-k">선임 전 영상 검토 비율 (수요측 이동)</div>
+      </div>
+      <div class="number-cell">
+        <div class="number-v">2024</div>
+        <div class="number-k">대한변협 광고규정 명확화. 영상 허용 범위 확대</div>
+      </div>
+    </div>
+    <p class="numbers-disclaimer">출처: 대한변호사협회 통계 · 시장 분석 자료 종합</p>
+  </div>
+</section>
+
+<!-- ===== §07 TRUST ===== -->
+<section class="block" id="trust">
+  <div class="wrap">
+    <div class="section-mark" aria-hidden="true"><span class="idx">§ 07</span> Trust</div>
+    <div class="eyebrow">함께한 영역</div>
+    <h2 class="section-title reveal">
+      이미 다양한 영역과<br>이야기를 나누고 있습니다.
+    </h2>
+    <p class="section-lede reveal">
+      로펌·법률사무소·전문 변호사 브랜딩. 의뢰인이 가장 신뢰하는 분야에서 활동합니다.
+    </p>
+
+    <div class="trust-grid reveal">
+      <div class="trust-cell"><div class="n">이혼·가사<br><small>FAMILY LAW</small></div></div>
+      <div class="trust-cell"><div class="n">형사<br><small>CRIMINAL</small></div></div>
+      <div class="trust-cell"><div class="n">상속<br><small>INHERITANCE</small></div></div>
+      <div class="trust-cell"><div class="n">기업 법무<br><small>CORPORATE</small></div></div>
+      <div class="trust-cell"><div class="n">노동<br><small>LABOR</small></div></div>
+      <div class="trust-cell"><div class="n">부동산<br><small>REAL ESTATE</small></div></div>
+      <div class="trust-cell"><div class="n">의료<br><small>MEDICAL</small></div></div>
+      <div class="trust-cell"><div class="n">금융·IT<br><small>FINTECH</small></div></div>
+    </div>
+
+    <p class="trust-note">— 클라이언트 비공개 요청에 따라 로펌·변호사 개인명은 공개하지 않습니다.</p>
+  </div>
+</section>
+
+<!-- ===== §08 MANIFESTO ===== -->
+<section class="manifesto">
+  <div class="wrap">
+    <div class="section-mark" aria-hidden="true" style="color:rgba(244,241,234,.5);"><span class="idx" style="color:rgba(244,241,234,.85);">§ 08</span> Manifesto</div>
+    <p class="manifesto-text reveal">
+      "의뢰인은 설명보다<br>
+      신뢰를 먼저 봅니다."
+    </p>
+    <div class="manifesto-attr">LAWCRAFT Manifesto · 2026</div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand-line">LAWCRAFT · Legal Video Marketing</div>
+        <p class="foot-tag">법률 서비스 조직을 위한 AI 기반 영상 브랜딩·운영 솔루션. 컴플라이언스부터 성과까지 한 번에.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Product</h5>
+        <a href="#how">작동 방식</a>
+        <a href="#why">왜 LAWCRAFT인가</a>
+        <a href="#contact">진단 요청</a>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <a href="mailto:hello@opsmedia.co.kr">hello@opsmedia.co.kr</a>
+        <a href="#">서울특별시 강남구</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 OpsMedia. All rights reserved.</span>
+      <span class="sibling">— Sibling brand: <a href="/">MEDIACRAFT</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Chips
+  const interestsHidden = document.getElementById('interestsHidden');
+  function syncInterests(){
+    if(!interestsHidden) return;
+    const selected = Array.from(document.querySelectorAll('#interestChips .chip.on'))
+      .map(c => c.dataset.value || c.textContent.trim());
+    interestsHidden.value = selected.join(', ');
+  }
+  document.querySelectorAll('#interestChips .chip').forEach(c=>{
+    c.addEventListener('click', ()=>{
+      c.classList.toggle('on');
+      syncInterests();
+    });
+  });
+
+  // Form submission — uses the same Apps Script endpoint as MEDIACRAFT
+  const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycby6V-OFOPeNwdE0zAITUPN4YHqOIchjK5DZ-Mu6U9MOLiNUGqZuEg6BgLe9VBS-viMg_Q/exec';
+  const heroForm = document.getElementById('contact');
+  const submitBtn = document.getElementById('heroFormSubmit');
+  const submitLabel = submitBtn ? submitBtn.querySelector('.hero-form-submit-label') : null;
+  const formNote = document.getElementById('heroFormNote');
+
+  if(heroForm){
+    heroForm.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      syncInterests();
+      submitBtn.disabled = true;
+      const originalLabel = submitLabel.textContent;
+      submitLabel.textContent = '전송 중…';
+      if(formNote){ formNote.textContent = '잠시만 기다려주세요.'; }
+
+      try{
+        const formData = new FormData(heroForm);
+        // tag as lawcraft so we can distinguish in the sheet later
+        formData.append('source', 'LAWCRAFT');
+        await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors'
+        });
+        submitLabel.textContent = '✓ 접수 완료';
+        if(formNote){
+          formNote.innerHTML = '문의가 접수되었습니다. 1~3 영업일 내에 맞춤 진단과 함께 회신드립니다.';
+        }
+        heroForm.reset();
+        document.querySelectorAll('#interestChips .chip.on').forEach(c=>c.classList.remove('on'));
+        if(interestsHidden) interestsHidden.value = '';
+        setTimeout(()=>{
+          submitBtn.disabled = false;
+          submitLabel.textContent = originalLabel;
+          if(formNote){
+            formNote.textContent = '접수 후 영업일 기준 1~3일 이내에 맞춤 진단과 함께 회신드립니다.';
+          }
+        }, 6000);
+      }catch(err){
+        submitBtn.disabled = false;
+        submitLabel.textContent = originalLabel;
+        if(formNote){
+          formNote.innerHTML = '전송에 실패했어요. 잠시 후 다시 시도하시거나 <a href="mailto:hello@opsmedia.co.kr" style="text-decoration:underline;">hello@opsmedia.co.kr</a>로 직접 연락주세요.';
+        }
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
